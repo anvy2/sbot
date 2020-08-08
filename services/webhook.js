@@ -1,4 +1,5 @@
-const router = require('express').router();
+const express = require('express');
+const router = express.Router();
 
 const webhookVerification = require('../helpers/webhookVerification');
 const webhookHandler = require('../helpers/webhookHandler');
