@@ -1,6 +1,6 @@
 const callSendAPI = require('./sendAPI');
 
-const sendTypingOn = (recipientId) => {
+const sendTypingOn = async (recipientId) => {
   const messageData = {
     recipient: {
       id: recipientId,
@@ -8,17 +8,17 @@ const sendTypingOn = (recipientId) => {
     sender_action: 'typing_on',
   };
 
-  callSendAPI(messageData).then(() => console.log('SendTypingOn Complete'));
+  await callSendAPI(messageData);
 };
 
-const sendTypingOff = (recipientId) => {
+const sendTypingOff = async (recipientId) => {
   const messageData = {
     recipient: {
       id: recipientId,
     },
     sender_action: 'typing_off',
   };
-  callSendAPI(messageData).then(() => console.log('SendTypingOff Complete'));
+  await callSendAPI(messageData);
 };
 
 module.exports = {

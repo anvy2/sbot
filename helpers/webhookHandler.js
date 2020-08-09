@@ -1,3 +1,12 @@
+const {
+  receivedAccountLink,
+  receivedAuthentication,
+  receivedDeliveryConfirmation,
+  receivedMessage,
+  receivedPostback,
+  receivedRead,
+} = require('./WebhookEvents/events');
+
 module.exports = (req, res) => {
   const body = req.body;
 
@@ -6,23 +15,23 @@ module.exports = (req, res) => {
       const pageId = entry.id;
       const timeOfEvent = entry.time;
 
-      pageEntry.messaging.forEach(messagingEvent) => {
-        if(messagingEvent.optin) {
-          receivedAuthentication(messagingEvent);
-        } else if(messagingEvent.message) {
-          recivedMessage(messagingEvent);
-        } else if(messagingEvent.delivery) {
-          receivedDeliveryConfirmation(messagingEvent);
-        } else if(messagingEvent.postback) {
-          receivedPostback(messagingEvent);
-        } else if(messagingEvent.read) {
-          receivedRead(messagingEvent);
-        } else if(messagingEvent.account_linking) {
-          receivedAccountLink(messagingEvent);
+      entry.messaging.forEach(async (messagingEvent) => {
+        if (messagingEvent.optin) {
+          await receivedAuthentication(messagingEvent);
+        } else if (messagingEvent.message) {
+          await receivedMessage(messagingEvent);
+        } else if (messagingEvent.delivery) {
+          await receivedDeliveryConfirmation(messagingEvent);
+        } else if (messagingEvent.postback) {
+          await receivedPostback(messagingEvent);
+        } else if (messagingEvent.read) {
+          await receivedRead(messagingEvent);
+        } else if (messagingEvent.account_linking) {
+          await receivedAccountLink(messagingEvent);
         } else {
           console.log('Unsubscribed Event Received: ', messagingEvent);
         }
-      }
+      });
     });
     res.status(200).send('EVENT_RECEIVED');
   } else {
