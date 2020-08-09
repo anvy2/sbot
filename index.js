@@ -22,5 +22,5 @@ app.get('/', (req, res) => {
 app.use(webhook);
 
 app.listen(PORT, () => {
-  console.log(`Listening to port ${PORT}`);
+  console.log(`Listening at port ${PORT}`);
 });
