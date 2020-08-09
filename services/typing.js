@@ -1,22 +1,27 @@
 const callSendAPI = require('./sendAPI');
 
-const sendTypingOn(recipientId) {
-  const messsageData = {
-    recipient: {
-      id: recipientId
-    },
-    sender_action: "typing_on"
-  };
-
-  callSendAPI(messageData);
-}
-
-const sendTypingOff(recipientId) {
+const sendTypingOn = (recipientId) => {
   const messageData = {
     recipient: {
-      id: recipientId
+      id: recipientId,
     },
-    sender_action: "typing_off"
-  }
-  callSendAPI(messageData);
-}
+    sender_action: 'typing_on',
+  };
+
+  callSendAPI(messageData).then(() => console.log('SendTypingOn Complete'));
+};
+
+const sendTypingOff = (recipientId) => {
+  const messageData = {
+    recipient: {
+      id: recipientId,
+    },
+    sender_action: 'typing_off',
+  };
+  callSendAPI(messageData).then(() => console.log('SendTypingOff Complete'));
+};
+
+module.exports = {
+  sendTypingOn,
+  sendTypingOff,
+};
