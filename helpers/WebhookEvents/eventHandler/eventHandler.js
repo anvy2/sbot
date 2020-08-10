@@ -125,7 +125,7 @@ const handleMessages = async (messages, sender) => {
   let previousType;
   let cardTypes = [];
   let timeout = 0;
-  for (var i = 0; i < messages.length; i++) {
+  for (let i = 0; i < messages.length; i++) {
     if (
       previousType === 'card' &&
       (messages[i].message !== 'card' || i === messages.length - 1)
