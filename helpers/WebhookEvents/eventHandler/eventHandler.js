@@ -36,8 +36,7 @@ const handleQuickReply = async (senderId, quickReply, messageId) => {
   console.log(
     `Quick reply for message ${messageId}  with payload ${quickReplyPayload}`,
   );
-
-  sendToDialogFlow(senderId, quickReplyPayload);
+  await sendToDialogFlow(senderId, quickReplyPayload);
 };
 
 //https://developers.facebook.com/docs/messenger-platform/webhook-reference/message-echo
